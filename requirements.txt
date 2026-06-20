@@ -1,0 +1,30 @@
+# Core Agent Framework
+langchain
+langgraph
+langchain-ollama
+langchain-community
+
+# Vector Store & Embeddings
+chromadb
+sentence-transformers
+
+# Web Search
+duckduckgo-search
+
+# Data Analysis
+pandas
+matplotlib
+seaborn
+ydata-profiling
+
+# Document Loading
+pypdf
+
+# Weather API
+requests
+
+# Environment Variables
+python-dotenv
+
+# Frontend
+streamlit
