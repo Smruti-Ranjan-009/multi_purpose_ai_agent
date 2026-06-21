@@ -1,26 +1,38 @@
-from langchain_ollama import ChatOllama
+from langchain_core.messages import HumanMessage, AIMessage, BaseMessage
 from langgraph.graph import StateGraph, END
 from langgraph.prebuilt import ToolNode, tools_condition
-from langchain_core.messages import HumanMessage, AIMessage, BaseMessage
 from typing import TypedDict, Annotated, Sequence
 import operator
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from agent.tools.search import web_search
 from agent.tools.weather import get_weather
 from agent.tools.analyst import analyse_data
 from agent.tools.rag import search_documents
 
+# ── LLM Selection based on environment ───────────────────────
+USE_GROQ = os.getenv("USE_GROQ", "false").lower() == "true"
+
+if USE_GROQ:
+    from langchain_groq import ChatGroq
+    llm = ChatGroq(model="llama-3.2-3b-preview", temperature=0)
+else:
+    from langchain_ollama import ChatOllama
+    llm = ChatOllama(
+        model="qwen2.5:3b",
+        temperature=0,
+        num_gpu=1,
+        num_ctx=2048
+    )
+
 # ── State Definition ──────────────────────────────────────────
 class AgentState(TypedDict):
     messages: Annotated[Sequence[BaseMessage], operator.add]
 
-# ── LLM + Tools ───────────────────────────────────────────────
-llm = ChatOllama(
-    model="qwen2.5:3b",
-    temperature=0,
-    num_gpu=1,
-    num_ctx=2048
-)
+# ── Tools ─────────────────────────────────────────────────────
 tools = [web_search, get_weather, analyse_data, search_documents]
 llm_with_tools = llm.bind_tools(tools)
 
