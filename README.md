@@ -1,3 +1,12 @@
+---
+title: Multi Purpose Ai Agent
+emoji: 🤖
+colorFrom: blue
+colorTo: purple
+sdk: docker
+pinned: false
+---
+
 # 🤖 Multi-Purpose AI Agent
 
 A production-grade AI agent built with **LangGraph**, **FastAPI**, and **React** that autonomously decides which tool to use based on your query — powered by a local LLM via Ollama.
