@@ -1,0 +1,1 @@
+*{box-sizing:border-box;margin:0;padding:0}body{color:#ececec;background:#0f0f0f;height:100vh;font-family:Segoe UI,sans-serif}::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:#333;border-radius:3px}@keyframes pulse{0%,to{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
