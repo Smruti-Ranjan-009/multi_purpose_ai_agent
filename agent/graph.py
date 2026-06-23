@@ -18,7 +18,7 @@ USE_GROQ = os.getenv("USE_GROQ", "false").lower() == "true"
 
 if USE_GROQ:
     from langchain_groq import ChatGroq
-    llm = ChatGroq(model="llama3-8b-8192", temperature=0)
+    llm = ChatGroq(model="openai/gpt-oss-20b", temperature=0)
 else:
     from langchain_ollama import ChatOllama
     llm = ChatOllama(
